@@ -1,4 +1,4 @@
-# tk-framework-remotestorageexample
+# tk-framework-remotestorage
 
 This is an example of a Toolkit Framework that could be used to provide an interface for uploading and downloading files to and from a cloud storage solution.
 
@@ -19,10 +19,12 @@ remote_storage = self.load_framework("tk-framework-remotestorage_v1.x.x")
 The framework has two public methods that can be called:
 
 #### `upload_publish(published_file)`
+
 This expects a Shotgun `PublishedFile` entity dictionary, and will upload the file path associated with that entity to the configured storage (which is implemented via the hooks).
 It returns a `str` path to the uploaded file.
 
 #### `upload_publishes(published_files)`
+
 A convenience method based on the `upload_publish`, which can be passed a list of `PublishedFile` entities.
 This returns a list of paths to the uploaded files.
 
