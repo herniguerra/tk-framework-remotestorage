@@ -35,7 +35,7 @@ class RemoteStorageFramework(sgtk.platform.Framework):
         try:
             for published_file in published_files:
                 self.engine.show_busy(
-                    "Uploading", "Sending to remote: %s ..." % published_file["code"]
+                    "Uploading", "Sending to mwCloud: %s ..." % published_file["code"]
                 )
                 self.logger.debug("Executing upload hook for %s" % published_file)
                 uploaded_files.append(
@@ -67,7 +67,7 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             for published_file in published_files:
                 self.engine.show_busy(
                     "Download",
-                    "Retrieving from remote: %s ..." % published_file["code"],
+                    "Retrieving from mwCloud: %s ..." % published_file["code"],
                 )
                 self.logger.debug("Executing download hook for %s" % published_file)
                 downloaded_files.append(
