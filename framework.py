@@ -126,6 +126,9 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             "***********************"
             "///////////////////////"
 
-            print dependencies
+            for dep in dependencies:
+                print "HHHHHHHHHHHHHH"
+                print ""
+                print dep
 
         return dependencies
