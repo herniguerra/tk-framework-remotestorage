@@ -35,9 +35,10 @@ class RemoteStorageFramework(sgtk.platform.Framework):
         try:
             for published_file in published_files:
                 self.engine.show_busy(
-                    "Uploading", "Sending to mwCloud: %s ..." % published_file["code"]
+                    "Uploading", "Sending to mw_cloud: %s ..." % published_file["code"]
                 )
-                self.logger.debug("Executing upload hook for %s" % published_file)
+                self.logger.debug(
+                    "Executing upload hook for %s" % published_file)
                 uploaded_files.append(
                     self.execute_hook_method(
                         "provider_hook", "upload", published_file=published_file
@@ -47,7 +48,7 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             self.engine.clear_busy()
         return uploaded_files
 
-    def download_publish(self, published_file):
+    def download_publish1(self, published_file):
         """
         Downloads a list of PublishedFiles from the remote storage to the local storage.
         :param published_file: dict
@@ -67,9 +68,10 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             for published_file in published_files:
                 self.engine.show_busy(
                     "Download",
-                    "Retrieving from mwCloud: %s ..." % published_file["code"],
+                    "Retrieving from mw_cloud: %s ..." % published_file["code"],
                 )
-                self.logger.debug("Executing download hook for %s" % published_file)
+                self.logger.debug(
+                    "Executing download hook for %s" % published_file)
                 downloaded_files.append(
                     self.execute_hook_method(
                         "provider_hook", "download", published_file=published_file
@@ -78,3 +80,57 @@ class RemoteStorageFramework(sgtk.platform.Framework):
         finally:
             self.engine.clear_busy()
         return downloaded_files
+
+    def has_dependencies1(self, published_file):
+        import shotgun_api3
+
+        sg = shotgun_api3.Shotgun(
+            "https://many-worlds.shotgunstudio.com",
+            script_name="mw_main_script",
+            api_key="wmNnyhwfdpuecdstofw0^gjkk")
+
+        published_file_id = published_file["id"]
+        filters = [["id", "is", published_file_id]]
+        fields = ["upstream_published_files"]
+        publishedFile = sg.find_one("PublishedFile", filters, fields)
+
+        print "HAS DEPENDENCIES??????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+        print "?????????????????????????"
+
+        if len(publishedFile["upstream_published_files"]) != 0:
+            dependencies = []
+
+            for dep in publishedFile["upstream_published_files"]:
+                dependency_id = publishedFile["upstream_published_files"][0]["id"]
+                filters = [["id", "is", dependency_id]]
+                fields = ["path", "name", "published_file_type", "code"]
+                dependency = sg.find_one("PublishedFile", filters, fields)
+                dependencies.append(dependency)
+
+            "***********************"
+            "***********************"
+            "***********************"
+            "***********************"
+            "***********************"
+            "***********************"
+            "***********************"
+            "***********************"
+
+            print dependencies
+            return dependencies
+        else:
+            return None
