@@ -111,11 +111,12 @@ class RemoteStorageFramework(sgtk.platform.Framework):
         print "?????????????????????????"
         print "?????????????????????????"
 
+        dependencies = None
         if len(publishedFile["upstream_published_files"]) != 0:
             dependencies = []
 
             for dep in publishedFile["upstream_published_files"]:
-                dependency_id = publishedFile["upstream_published_files"][0]["id"]
+                dependency_id = dep["id"]
                 filters = [["id", "is", dependency_id]]
                 fields = ["path", "name", "published_file_type", "code"]
                 dependency = sg.find_one("PublishedFile", filters, fields)
