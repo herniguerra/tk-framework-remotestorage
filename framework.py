@@ -48,7 +48,7 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             self.engine.clear_busy()
         return uploaded_files
 
-    def download_publish1(self, published_file):
+    def download_publish(self, published_file):
         """
         Downloads a list of PublishedFiles from the remote storage to the local storage.
         :param published_file: dict
@@ -81,7 +81,7 @@ class RemoteStorageFramework(sgtk.platform.Framework):
             self.engine.clear_busy()
         return downloaded_files
 
-    def has_dependencies1(self, published_file):
+    def has_dependencies(self, published_file):
         import shotgun_api3
 
         sg = shotgun_api3.Shotgun(
