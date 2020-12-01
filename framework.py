@@ -124,14 +124,8 @@ class RemoteStorageFramework(sgtk.platform.Framework):
 
             "***********************"
             "***********************"
-            "***********************"
-            "***********************"
-            "***********************"
-            "***********************"
-            "***********************"
-            "***********************"
+            "///////////////////////"
 
             print dependencies
-            return dependencies
-        else:
-            return None
+
+        return dependencies
